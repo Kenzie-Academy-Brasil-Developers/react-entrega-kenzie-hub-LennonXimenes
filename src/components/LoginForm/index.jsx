@@ -1,12 +1,13 @@
 import { useForm } from "react-hook-form";
-import { StyledButton, StyledForm, StyledInput } from "../../pages/LoginPage/style";
+import { Link } from "react-router-dom";
+
 import { FontLabel, FontParagraph, FontTitle } from "../../styles/typograph";
+import { StyledButton, StyledForm, StyledInput } from "../../pages/LoginPage/style";
 
 function LoginForm() {
     const { register, handleSubmit } = useForm();
 
     function submit(formData) {
-
         console.log(formData)
     }
 
@@ -23,7 +24,7 @@ function LoginForm() {
 
                 <FontParagraph>Ainda não possui uma conta?</FontParagraph>
 
-                <StyledButton>Cadastre-se</StyledButton>
+                <StyledButton><Link to="/registerpage" className="noStyle">Cadastre-se</Link></StyledButton>
             </StyledForm>
     )
 }

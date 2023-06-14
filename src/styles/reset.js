@@ -29,4 +29,10 @@ export const GlobalReset = createGlobalStyle`
         outline: none;
         box-shadow: none;
     }
+
+    .noStyle {
+        text-decoration: none;
+        color: inherit;
+        background-color: transparent;
+    }
 `

@@ -1,13 +1,17 @@
+import Header from "../../components/Header";
 import RegisterForm from "../../components/RegisterForm";
-import { FontTitle } from "../../styles/typograph";
+
+import { StyledContainer } from "./styled";
 
 function RegisterPage() {
+    
     return (
-        <div>
-            <FontTitle>Crie sua conta</FontTitle>
-            <p>Rapido e grátis, vamos nessa</p>
+        <>
+        <Header/>
+        <StyledContainer>
             <RegisterForm/>
-        </div>
+        </StyledContainer>
+        </>
     )
 }
 
