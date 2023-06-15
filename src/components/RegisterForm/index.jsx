@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 
-import { StyledButton, StyledForm, StyledInput, StyledSelect } from "../../pages/RegisterPage/styled";
+import { StyledButton, StyledForm, StyledSelect } from "../../pages/RegisterPage/styled";
 import { FontLabel, FontParagraph, FontTitle } from "../../styles/typograph";
 
 import { api } from "../../services/api";
@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import registerUserSchema from "./registerUserSchema";
+import Input from "../Input";
 
 function RegisterForm() {
     const { register, handleSubmit, formState: { errors }, reset } = useForm({
@@ -27,7 +28,6 @@ function RegisterForm() {
     }
 
     async function submit(formData) {
-        console.log(formData);
         await createUser(formData);
         reset();
 
@@ -38,29 +38,54 @@ function RegisterForm() {
             <FontTitle>Crie sua conta</FontTitle>
             <FontParagraph>Rapido e grátis, vamos nessa</FontParagraph>
 
-            <FontLabel>Nome</FontLabel>
-            <StyledInput type="text" {...register("name")}/>
-            {errors.name?.message}
+            <Input 
+                label="Nome"
+                type="text"
+                placeholder="Seu nome"
+                {...register("name")}
+                error={errors.name}
+            />
 
-            <FontLabel>Email</FontLabel>
-            <StyledInput type="text" {...register("email")}/>
-            {errors.email?.message}
-            
-            <FontLabel>Senha</FontLabel>
-            <StyledInput type="text" {...register("password")}/>
-            {errors.password?.message}
+            <Input 
+                label="Email"
+                type="text"
+                placeholder="Seu e-mail"
+                {...register("email")}
+                error={errors.email}
+            />
 
-            <FontLabel>Confirmar senha</FontLabel>
-            <StyledInput type="text" {...register("confirmPassword")}/>
-            {errors.confirmPassword?.message}
+            <Input 
+                label="Senha"
+                type="text"
+                placeholder="Sua senha"
+                {...register("password")}
+                error={errors.password}
+            />
 
-            <FontLabel>Bio</FontLabel>
-            <StyledInput type="text" {...register("bio")}/>
-            {errors.bio?.message}
+            <Input 
+                label="Confirmar senha"
+                type="text"
+                placeholder="Sua senha novamente"
+                {...register("confirmPassword")}
+                error={errors.confirmPassword}
+            />
 
-            <FontLabel>Contato</FontLabel>
-            <StyledInput type="text" {...register("contact")}/>
-            {errors.contact?.message}
+            <Input 
+                label="Bio"
+                type="text"
+                placeholder="Fale sobre você"
+                {...register("bio")}
+                error={errors.bio}
+            />
+
+            <Input 
+                label="Contato"
+                type="text"
+                placeholder="Seu contato"
+                {...register("contact")}
+                error={errors.contact}
+            />
+
 
             <FontLabel>Selecionar módulo</FontLabel>
             <StyledSelect {...register("course_module")}>

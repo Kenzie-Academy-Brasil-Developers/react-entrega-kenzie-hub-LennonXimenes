@@ -1,14 +1,15 @@
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 
-import { FontLabel, FontParagraph, FontTitle } from "../../styles/typograph";
-import { StyledButton, StyledForm, StyledInput } from "../../pages/LoginPage/style";
+import { FontParagraph } from "../../styles/typograph";
+import { StyledButton, StyledForm } from "../../pages/LoginPage/style";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import loginUserSchema from "./loginUserSchema";
+import Input from "../Input";
 
 function LoginForm() {
-    const { register, handleSubmit } = useForm({
+    const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: zodResolver(loginUserSchema)
     });
 
@@ -18,12 +19,21 @@ function LoginForm() {
 
     return (
             <StyledForm onSubmit={handleSubmit(submit)}>
-                <FontTitle>Login</FontTitle>
-                <FontLabel>Email</FontLabel>
-                <StyledInput type="email" {...register("email")} />
+            <Input 
+                label="Email"
+                type="text"
+                placeholder="Seu e-mail"
+                {...register("email")}
+                error={errors.email}
+            />
 
-                <FontLabel>Senha</FontLabel>
-                <StyledInput type="password" {...register("password")} />
+            <Input
+                label="Senha"
+                type="text"
+                placeholder="Sua senha"
+                {...register("password")}
+                error={errors.password}
+            />
 
                 <StyledButton color="pink">Entrar</StyledButton>
 

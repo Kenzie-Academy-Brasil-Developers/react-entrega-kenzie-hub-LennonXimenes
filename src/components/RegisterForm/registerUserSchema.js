@@ -1,11 +1,11 @@
 import { z } from "zod";
 
-function registerUserSchema() {
-    return z.object({
+const registerUserSchema = 
+    z.object({
         name:
             z.string()
             .nonempty("O nome é obrigatório")
-            .min(3., "O nome precisa conter pelo menos 3 caracteres"),
+            .min(3, "O nome precisa conter pelo menos 3 caracteres"),
         email:
             z.string()
             .nonempty("O e-mail é obrigatório")
@@ -13,7 +13,8 @@ function registerUserSchema() {
         password: 
             z.string()
             .nonempty("A senha é obrigatória")
-            .regex(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{8,}$/, `- Deve ter pelo menos uma letra maiúscula;
+            .regex(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{8,}$/, 
+            `- Deve ter pelo menos uma letra maiúscula;
             - Deve ter pelo menos uma letra minúscula;
             - Deve ter pelo menos um caractere especial;
             - Deve ter pelo menos um número;
@@ -21,7 +22,8 @@ function registerUserSchema() {
         confirmPassword: 
             z.string()
             .nonempty("A senha é obrigatória")
-            .regex(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{8,}$/, `- Deve ter pelo menos uma letra maiúscula;
+            .regex(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{8,}$/, 
+            `- Deve ter pelo menos uma letra maiúscula;
             - Deve ter pelo menos uma letra minúscula;
             - Deve ter pelo menos um caractere especial;
             - Deve ter pelo menos um número;
@@ -37,6 +39,5 @@ function registerUserSchema() {
             z.string()
             .nonempty("Precisa selecionar o seu módulo"),
     })
-}
 
 export default registerUserSchema;
