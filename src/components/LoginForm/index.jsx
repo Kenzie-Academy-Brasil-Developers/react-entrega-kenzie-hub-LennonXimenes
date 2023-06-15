@@ -4,8 +4,13 @@ import { Link } from "react-router-dom";
 import { FontLabel, FontParagraph, FontTitle } from "../../styles/typograph";
 import { StyledButton, StyledForm, StyledInput } from "../../pages/LoginPage/style";
 
+import { zodResolver } from "@hookform/resolvers/zod";
+import loginUserSchema from "./loginUserSchema";
+
 function LoginForm() {
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit } = useForm({
+        resolver: zodResolver(loginUserSchema)
+    });
 
     function submit(formData) {
         console.log(formData)

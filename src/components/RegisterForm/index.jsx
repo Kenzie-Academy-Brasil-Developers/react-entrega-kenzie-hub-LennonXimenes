@@ -6,8 +6,13 @@ import { FontLabel, FontParagraph, FontTitle } from "../../styles/typograph";
 import { api } from "../../services/api";
 import { useNavigate } from "react-router-dom";
 
+import { zodResolver } from "@hookform/resolvers/zod";
+import registerUserSchema from "./registerUserSchema";
+
 function RegisterForm() {
-    const { register, handleSubmit, reset } = useForm();
+    const { register, handleSubmit, formState: { errors }, reset } = useForm({
+        resolver: zodResolver(registerUserSchema)
+    });
 
     const navigate = useNavigate();
 
@@ -35,21 +40,27 @@ function RegisterForm() {
 
             <FontLabel>Nome</FontLabel>
             <StyledInput type="text" {...register("name")}/>
+            {errors.name?.message}
 
             <FontLabel>Email</FontLabel>
             <StyledInput type="text" {...register("email")}/>
+            {errors.email?.message}
             
             <FontLabel>Senha</FontLabel>
             <StyledInput type="text" {...register("password")}/>
+            {errors.password?.message}
 
             <FontLabel>Confirmar senha</FontLabel>
-            <StyledInput type="text" {...register("password")}/>
+            <StyledInput type="text" {...register("confirmPassword")}/>
+            {errors.confirmPassword?.message}
 
             <FontLabel>Bio</FontLabel>
             <StyledInput type="text" {...register("bio")}/>
+            {errors.bio?.message}
 
             <FontLabel>Contato</FontLabel>
             <StyledInput type="text" {...register("contact")}/>
+            {errors.contact?.message}
 
             <FontLabel>Selecionar módulo</FontLabel>
             <StyledSelect {...register("course_module")}>
