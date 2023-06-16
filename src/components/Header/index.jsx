@@ -2,7 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import Logo from "../../assets/Logo.png"
 import { StyledContainer, StyledHeader } from "./style";
 
-function Header() {
+function Header({ user, setUser }) {
     const location = useLocation();
 
     function loginPage() {
@@ -11,6 +11,11 @@ function Header() {
 
     function dashboardPage() {
         return location.pathname === "/dashboardpage";
+    }
+
+    function exit() {
+        localStorage.clear();
+        setUser(null);
     }
 
     return (
@@ -23,7 +28,7 @@ function Header() {
                 )}
 
                 {dashboardPage() && (
-                    <button><Link to="/" className="noStyle">Sair</Link></button>
+                    <button onClick={() => exit()}><Link to="/" className="noStyle">Sair</Link></button>
                 )}
             </StyledContainer>
         </StyledHeader>

@@ -12,7 +12,7 @@ export const StyledForm = styled.form`
     margin: 0 auto;
     padding: 30px 15px;
 
-    height: 25rem;
+    height: auto;
     width: 18.75rem;
 
     background-color: var(--color--grey-3);

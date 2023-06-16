@@ -3,17 +3,17 @@ import { FontParagraph, FontTitle } from "../../styles/typograph";
 
 import { StyledContainer, StyledSection } from "./styled";
 
-function DashboardPage() {
-    const name = "Lennon Ximenes";
-    const module = "M4"
-
+function DashboardPage({ user }) {
+    const token = localStorage.getItem("@TOKEN");
+    const student = localStorage.getItem("@USERID");
+    
     return (
         <>
             <Header />
             <StyledSection>
                 <StyledContainer>
-                    <FontTitle>Olá, {name}</FontTitle>
-                    <FontParagraph>Você está no {module}, bons estudos!</FontParagraph>
+                    <FontTitle>Olá, {user.name}</FontTitle>
+                    <FontParagraph>Você está no {user.course_module}, bons estudos!</FontParagraph>
                 </StyledContainer>
             </StyledSection>
 

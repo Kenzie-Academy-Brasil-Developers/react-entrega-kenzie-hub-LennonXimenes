@@ -1,5 +1,14 @@
 import { z } from "zod";
 
+
+/*
+At least one upper case English letter, (?=.*?[A-Z])
+At least one lower case English letter, (?=.*?[a-z])
+At least one digit, (?=.*?[0-9])
+At least one special character, (?=.*?[#?!@$%^&*-])
+Minimum eight in length .{8,} (with the anchors)
+*/
+
 const registerUserSchema = 
     z.object({
         name:
@@ -13,22 +22,15 @@ const registerUserSchema =
         password: 
             z.string()
             .nonempty("A senha é obrigatória")
-            .regex(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{8,}$/, 
-            `- Deve ter pelo menos uma letra maiúscula;
-            - Deve ter pelo menos uma letra minúscula;
-            - Deve ter pelo menos um caractere especial;
-            - Deve ter pelo menos um número;
-            - Deve ter no mínimo 8 caracteres.`),
-        confirmPassword: 
+            .min(8, "Deve ter no mínimo 8 caracteres")
+            .regex(/(?=.*?[A-Z])/, "Deve ter pelo menos uma letra maiúscula")
+            .regex(/(?=.*?[a-z])/, "Deve ter pelo menos uma letra minúscula")
+            .regex(/(?=.*?[0-9])/, "Deve ter pelo menos um número")
+            .regex(/(?=.*?[#?!@$%^&*-])/, "Deve ter pelo menos um caractere especial"),
+        confirmPassword:
             z.string()
-            .nonempty("A senha é obrigatória")
-            .regex(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{8,}$/, 
-            `- Deve ter pelo menos uma letra maiúscula;
-            - Deve ter pelo menos uma letra minúscula;
-            - Deve ter pelo menos um caractere especial;
-            - Deve ter pelo menos um número;
-            - Deve ter no mínimo 8 caracteres.`),
-        bio: 
+            .nonempty("A senha é obrigatória"),
+        bio:
             z.string()
             .nonempty("A bio é obrigatória")
             .min(10, "A bio precisa conter pelo menos 10 carácteres"),
@@ -38,6 +40,9 @@ const registerUserSchema =
         course_module: 
             z.string()
             .nonempty("Precisa selecionar o seu módulo"),
-    })
+    }).refine(({ password, confirmPassword }) => password === confirmPassword, {
+        message: "As senhas não correspondem",
+        path: ["confirmPassword"]
+    });
 
 export default registerUserSchema;

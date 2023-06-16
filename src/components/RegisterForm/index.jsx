@@ -1,10 +1,11 @@
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import { toastError, toastSuccess } from "../Toast";
 
 import { StyledButton, StyledForm, StyledSelect } from "../../pages/RegisterPage/styled";
 import { FontLabel, FontParagraph, FontTitle } from "../../styles/typograph";
 
 import { api } from "../../services/api";
-import { useNavigate } from "react-router-dom";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import registerUserSchema from "./registerUserSchema";
@@ -20,17 +21,17 @@ function RegisterForm() {
     async function createUser(formData) {
         try {
             const {data} = await api.post("/users", formData);
-            console.log(data);
+            toastSuccess()
             navigate("/")
         } catch (error) {
             console.error(error);
+            toastError()
         }
     }
 
     async function submit(formData) {
         await createUser(formData);
         reset();
-
     }
 
     return (
