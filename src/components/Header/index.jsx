@@ -1,9 +1,11 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Logo from "../../assets/Logo.png"
 import { StyledContainer, StyledHeader } from "./style";
 
 function Header({ user, setUser }) {
     const location = useLocation();
+
+    const navigate = useNavigate()
 
     function loginPage() {
         return location.pathname === "/";
@@ -15,6 +17,7 @@ function Header({ user, setUser }) {
 
     function exit() {
         localStorage.clear();
+        navigate("/")
         setUser(null);
     }
 
@@ -28,7 +31,7 @@ function Header({ user, setUser }) {
                 )}
 
                 {dashboardPage() && (
-                    <button onClick={() => exit()}><Link to="/" className="noStyle">Sair</Link></button>
+                    <button onClick={() => exit()}>Sair</button>
                 )}
             </StyledContainer>
         </StyledHeader>
