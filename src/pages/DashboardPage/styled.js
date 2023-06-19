@@ -20,6 +20,4 @@ export const StyledContainer = styled.div`
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
-
-    border-top: 1px solid var(--color--grey-3);
 `

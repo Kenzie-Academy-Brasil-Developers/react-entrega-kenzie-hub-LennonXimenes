@@ -7,12 +7,14 @@ export const StyledHeader = styled.header`
 
 export const StyledContainer = styled.div`
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 
     height: 70px;
     width: 100%;
     max-width: 1440px;
+
+    gap: 4rem;
 
     margin: 0 auto;
     padding: 1rem;
@@ -43,6 +45,27 @@ export const StyledContainer = styled.div`
             background-color: ${({color}) => color === "pink" ? "var(--color--primary-focus)" : "var(--color--grey-2)"};
         }        
     }
+
+    @media (min-width: 375px) {
+        gap: 7.5rem;
+    }
+
+    @media (min-width: 425px) {
+        gap: 11rem;
+    }
+
+    @media (min-width: 768px) {
+        gap: 32rem;
+    }
+
+    @media (min-width: 1024px) {
+        gap: 48rem;
+    }
+
+    @media (min-width: 1440px) {
+        gap: 75rem;
+    }
+    
 `
 
 

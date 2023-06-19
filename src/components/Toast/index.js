@@ -3,7 +3,7 @@ import { toast, ToastContainer } from "react-toastify";
 export const toastSuccess = () => {
     toast.success('Conta criada com sucesso!', {
         position: "top-right",
-        autoClose: 3000,
+        autoClose: 2000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -16,7 +16,7 @@ export const toastSuccess = () => {
 export const toastSuccessLogin = () => {
     toast.success('Login realizado com sucesso!', {
         position: "top-right",
-        autoClose: 3000,
+        autoClose: 2000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -30,7 +30,7 @@ export const toastSuccessLogin = () => {
 export const toastError = () => {
     toast.error('Ops! Algo deu errado', {
         position: "top-right",
-        autoClose: 3000,
+        autoClose: 2000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -43,7 +43,7 @@ export const toastError = () => {
 export const toastErrorLogin = () => {
     toast.error('Ops! E-mail ou senha inválidos', {
         position: "top-right",
-        autoClose: 3000,
+        autoClose: 2000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
