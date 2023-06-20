@@ -21,3 +21,30 @@ export const StyledContainer = styled.div`
     align-items: center;
     padding: 1rem;
 `
+export const StyledContainerTitleBtn = styled.div`
+    height: auto;
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+                
+    button {
+        width: 32px;
+        height: 32px;
+        
+        background-color: var(--color--grey-2);
+        border-radius: 4px;
+    }
+        
+    img{
+        height: 10.5px;
+        width: 10.5px;
+        background-color: transparent;
+    }
+            
+`
+
+export const StyledBox = styled.div`
+    
+`

@@ -1,12 +1,22 @@
 import Header from "../../components/Header";
 import { FontParagraph, FontTitle } from "../../styles/typograph";
 
-import { StyledContainer, StyledSection } from "./styled";
+import { StyledContainer, StyledContainerTitleBtn, StyledSection } from "./styled";
+import btn from "../../assets/btn.png"
 
 function DashboardPage({ user }) {
     const token = localStorage.getItem("@TOKEN");
     const student = localStorage.getItem("@USERID");
-    
+
+    const filteredTechs = user.techs.filter(tech => tech.title)
+
+    const techs = filteredTechs.map(tech => tech.title)
+
+    const status = filteredTechs.map(stat => stat.status)
+
+    console.log(techs)
+    console.log(status)
+
     return (
         <>
             <Header />
@@ -19,8 +29,14 @@ function DashboardPage({ user }) {
 
             <StyledSection>
                 <StyledContainer>
-                    <FontTitle>Que pena! Estamos em desenvolvimento :/</FontTitle>
-                    <FontParagraph>Nossa aplicação está em desenvolvimento, em breve teremos novidades!</FontParagraph>
+
+                    <StyledContainerTitleBtn>
+                        <FontTitle>Tecnologias</FontTitle>
+                        <button><img src={btn} alt="Sinal de mais" /></button>
+                    </StyledContainerTitleBtn>
+
+                    
+
                 </StyledContainer>
             </StyledSection>
         </>

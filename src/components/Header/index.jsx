@@ -27,7 +27,7 @@ function Header({ user, setUser }) {
                 <img src={Logo} alt="Logo escrito Kenzie Hub" />
 
                 {!loginPage() && !dashboardPage() && (
-                    <button><Link to="/" className="noStyle">Voltar</Link></button>
+                    <button onClick={() => exit()}>Voltar</button>
                 )}
 
                 {dashboardPage() && (

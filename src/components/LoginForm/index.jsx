@@ -39,6 +39,10 @@ function LoginForm({ user, setUser }) {
         reset();
     }
 
+    function redirect() {
+        navigate("/registerpage")
+    }
+
     return (
         <StyledForm onSubmit={handleSubmit(submit)}>
 
@@ -64,7 +68,7 @@ function LoginForm({ user, setUser }) {
 
             <FontParagraph>Ainda não possui uma conta?</FontParagraph>
 
-            <StyledButton><Link to="/registerpage" className="noStyle">Cadastre-se</Link></StyledButton>
+            <StyledButton onClick={() => redirect()}>Cadastre-se</StyledButton>
         </StyledForm>
     )
 }
