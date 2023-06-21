@@ -1,21 +1,20 @@
 import Header from "../../components/Header";
 import { FontParagraph, FontTitle } from "../../styles/typograph";
 
-import { StyledContainer, StyledContainerTitleBtn, StyledSection } from "./styled";
+import { StyledBox, StyledContainer, StyledContainerTitleBtn, StyledSection } from "./styled";
 import btn from "../../assets/btn.png"
 
-function DashboardPage({ user }) {
+import { useContext } from "react";
+import { UserContext } from "../../providers/UserContext";
+
+function DashboardPage() {
+    
     const token = localStorage.getItem("@TOKEN");
     const student = localStorage.getItem("@USERID");
 
-    const filteredTechs = user.techs.filter(tech => tech.title)
+    const { user } = useContext(UserContext);
 
-    const techs = filteredTechs.map(tech => tech.title)
-
-    const status = filteredTechs.map(stat => stat.status)
-
-    console.log(techs)
-    console.log(status)
+    console.log(user)
 
     return (
         <>
@@ -35,7 +34,9 @@ function DashboardPage({ user }) {
                         <button><img src={btn} alt="Sinal de mais" /></button>
                     </StyledContainerTitleBtn>
 
-                    
+                    <StyledBox>
+
+                    </StyledBox>
 
                 </StyledContainer>
             </StyledSection>

@@ -1,33 +1,20 @@
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
-import { toastError, toastSuccess } from "../Toast";
 
 import { StyledButton, StyledForm, StyledSelect } from "../../pages/RegisterPage/styled";
 import { FontLabel, FontParagraph, FontTitle } from "../../styles/typograph";
 
-import { api } from "../../services/api";
-
 import { zodResolver } from "@hookform/resolvers/zod";
 import registerUserSchema from "./registerUserSchema";
 import Input from "../Input";
+import { UserContext } from "../../providers/UserContext";
+import { useContext } from "react";
 
 function RegisterForm() {
     const { register, handleSubmit, formState: { errors }, reset } = useForm({
         resolver: zodResolver(registerUserSchema)
     });
 
-    const navigate = useNavigate();
-
-    async function createUser(formData) {
-        try {
-            const {data} = await api.post("/users", formData);
-            toastSuccess()
-            navigate("/")
-        } catch (error) {
-            console.error(error);
-            toastError()
-        }
-    }
+    const {createUser} = useContext(UserContext);
 
     async function submit(formData) {
         await createUser(formData);

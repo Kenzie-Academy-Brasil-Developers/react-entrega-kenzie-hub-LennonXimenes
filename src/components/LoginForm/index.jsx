@@ -1,7 +1,5 @@
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
-import { toastErrorLogin, toastSuccessLogin } from "../Toast";
-
+import { useNavigate } from "react-router-dom";
 
 import { FontParagraph, FontTitle } from "../../styles/typograph";
 import { StyledButton, StyledForm } from "../../pages/LoginPage/style";
@@ -10,32 +8,19 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import loginUserSchema from "./loginUserSchema";
 import Input from "../Input";
 
-import { api } from "../../services/api";
-import { useState } from "react";
+import { useContext } from "react";
+import { UserContext } from "../../providers/UserContext";
 
-function LoginForm({ user, setUser }) {
+function LoginForm() {
     const { register, handleSubmit, formState: { errors }, reset } = useForm({
         resolver: zodResolver(loginUserSchema)
     });
 
     const navigate = useNavigate();
-
-    async function login(formData) {
-        try {
-            const { data } = await api.post("/sessions", formData);
-            localStorage.setItem("@TOKEN", data.token);
-            localStorage.setItem("@USERID", data.user.id);
-            setUser(data.user)
-            toastSuccessLogin()
-            navigate("/loadingpage")
-        } catch (error) {
-            console.error(error);
-            toastErrorLogin()
-        }
-    }
+    const { userLogin } = useContext(UserContext);
 
     async function submit(formData) {
-        await login(formData);
+        await userLogin(formData);
         reset();
     }
 

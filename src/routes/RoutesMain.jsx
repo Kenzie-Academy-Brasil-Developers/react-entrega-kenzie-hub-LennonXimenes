@@ -14,7 +14,6 @@ function RoutesMain() {
 
     useEffect(() => {
         async function loadUsers() {
-
             try {
                 const response = await api.get("/users");
             } catch (error) {

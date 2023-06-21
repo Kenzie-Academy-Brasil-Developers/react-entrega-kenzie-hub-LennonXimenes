@@ -1,11 +1,12 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Logo from "../../assets/Logo.png"
 import { StyledContainer, StyledHeader } from "./style";
+import { useContext } from "react";
+import { UserContext } from "../../providers/UserContext";
 
-function Header({ user, setUser }) {
+function Header() {
     const location = useLocation();
-
-    const navigate = useNavigate()
+    const { useReturn, userLogout } = useContext(UserContext);
 
     function loginPage() {
         return location.pathname === "/";
@@ -15,23 +16,17 @@ function Header({ user, setUser }) {
         return location.pathname === "/dashboardpage";
     }
 
-    function exit() {
-        localStorage.clear();
-        navigate("/")
-        setUser(null);
-    }
-
     return (
         <StyledHeader>
             <StyledContainer>
                 <img src={Logo} alt="Logo escrito Kenzie Hub" />
 
                 {!loginPage() && !dashboardPage() && (
-                    <button onClick={() => exit()}>Voltar</button>
+                    <button onClick={() => useReturn()}>Voltar</button>
                 )}
 
                 {dashboardPage() && (
-                    <button onClick={() => exit()}>Sair</button>
+                    <button onClick={() => userLogout()}>Sair</button>
                 )}
             </StyledContainer>
         </StyledHeader>
