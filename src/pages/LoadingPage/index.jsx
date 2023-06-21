@@ -1,9 +1,14 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FontTitle } from "../../styles/typograph";
+import { UserContext } from "../../providers/UserContext";
+import { useContext } from "react";
 
-function LoadingPage({ isLoading, setIsLoading }) {
+function LoadingPage() {
+    const { isLoading, setIsLoading } = useContext(UserContext);
+
     const navigate = useNavigate();
+
     useEffect(() => {
             setTimeout(() => {
                 navigate("/dashboardpage");

@@ -11,13 +11,13 @@ function App() {
   return (
     <div className="App">
       <UserProvider>
-      <ToastContainer/>
-      <GlobalReset/>
-      <GlobalStyles/>
-      <RoutesMain/>
+        <ToastContainer />
+        <GlobalReset />
+        <GlobalStyles />
+        <RoutesMain />
       </UserProvider>
     </div>
   )
 }
 
-export default App
+export default App;

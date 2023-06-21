@@ -8,21 +8,15 @@ import { useContext } from "react";
 import { UserContext } from "../../providers/UserContext";
 
 function DashboardPage() {
-    
-    const token = localStorage.getItem("@TOKEN");
-    const student = localStorage.getItem("@USERID");
-
     const { user } = useContext(UserContext);
-
-    console.log(user)
 
     return (
         <>
             <Header />
             <StyledSection>
                 <StyledContainer>
-                    <FontTitle>Olá, {user.name}</FontTitle>
-                    <FontParagraph>Você está no {user.course_module}, bons estudos!</FontParagraph>
+                    <FontTitle>Olá, {user?.name}</FontTitle>
+                    <FontParagraph>Você está no {user?.course_module}, bons estudos!</FontParagraph>
                 </StyledContainer>
             </StyledSection>
 

@@ -2,12 +2,42 @@ import { useState } from "react";
 import { createContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "../services/api";
-import { toastSuccess, toastSuccessLogin } from "../components/Toast";
+import { toastError, toastErrorLogin, toastSuccess, toastSuccessLogin } from "../components/Toast";
+import { useEffect } from "react";
 
 export const UserContext = createContext({});
 
 function UserProvider({ children }) {
     const [user, setUser] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
+
+    const currentPath = window.location.pathname;
+
+    useEffect(() => {
+        const token = localStorage.getItem("@TOKEN");
+        const id = localStorage.getItem("@USERID");
+        const loadUser = async () => {
+            try {
+                setIsLoading(true)
+                const { data } = await api.get(`/users/${id}`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                })
+                setUser(data);
+                navigate(currentPath);
+            } catch (error) {
+                console.error(error)
+            } finally {
+                setIsLoading(false)
+            }
+        }
+
+        if (token && id) {
+            loadUser();
+        }
+
+    }, []);
 
     const navigate = useNavigate();
 
@@ -47,7 +77,7 @@ function UserProvider({ children }) {
     }
 
     return (
-        <UserContext.Provider value={{ user, createUser, userLogin, userLogout, useReturn }}>
+        <UserContext.Provider value={{ user, createUser, userLogin, userLogout, useReturn, isLoading, setIsLoading }}>
             {children}
         </UserContext.Provider>
     )

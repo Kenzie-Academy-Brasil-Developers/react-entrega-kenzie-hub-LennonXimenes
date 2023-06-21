@@ -3,13 +3,13 @@ import LoginForm from "../../components/LoginForm";
 
 import { StyledContainer } from "./style";
 
-function LoginPage({ user, setUser }) {
+function LoginPage() {
 
     return (
         <>
-            <Header user={user} setUser={setUser}/>
+            <Header />
             <StyledContainer>
-                <LoginForm user={user} setUser={setUser}/>
+                <LoginForm />
             </StyledContainer>
         </>
     )

@@ -1,8 +1,9 @@
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import Logo from "../../assets/Logo.png"
-import { StyledContainer, StyledHeader } from "./style";
+import { useLocation } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../../providers/UserContext";
+
+import Logo from "../../assets/Logo.png"
+import { StyledContainer, StyledHeader } from "./style";
 
 function Header() {
     const location = useLocation();

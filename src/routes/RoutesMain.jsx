@@ -7,28 +7,34 @@ import DashboardPage from "../pages/DashboardPage";
 
 import { useEffect, useState } from "react";
 import { api } from "../services/api";
+import ProtectedRoutes from "../components/ProtectedRoutes";
+import PublicRoutes from "../components/PublicRoutes";
 
 function RoutesMain() {
-    const [isLoading, setIsLoading] = useState(false);
     const [user, setUser] = useState(null);
 
     useEffect(() => {
-        async function loadUsers() {
+        async function users() {
             try {
                 const response = await api.get("/users");
             } catch (error) {
                 console.error(error);
             }
         }
-        loadUsers();
+        users();
     }, [])
 
     return (
         <Routes>
-            <Route path="/" element={<LoginPage user={user} setUser={setUser} />} />
-            <Route path="/registerpage" element={<RegisterPage />} />
-            <Route path="loadingpage" element={<LoadingPage isLoading={isLoading} setIsLoading={setIsLoading} />}  />
-            <Route path="/dashboardpage" element={<DashboardPage user={user}/>} />
+            <Route element={<PublicRoutes />}>
+                <Route path="/" element={<LoginPage />} />
+                <Route path="/registerpage" element={<RegisterPage />} />
+            </Route>
+
+            <Route element={<ProtectedRoutes />}>
+                <Route path="/dashboardpage" element={<DashboardPage />} />
+                <Route path="/loadingpage" element={<LoadingPage />} />
+            </Route>
         </Routes>
     )
 
