@@ -46,5 +46,50 @@ export const StyledContainerTitleBtn = styled.div`
 `
 
 export const StyledBox = styled.div`
+    height: auto;
+    width: 100%;
     
+    margin: 1rem auto;
+    max-width: 1440px;
+    
+    border: 1px solid var(--color--grey-3);
+    background-color: var(--color--grey-3);
+    border-radius: 4px;
+
+
+    ul {
+        height: auto;
+        width: 100%;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        padding: 1rem;
+        gap: 1rem;
+    }
+
+    ul > li {
+        height: 50px;
+        width: 100%;
+
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+        padding: 1rem;
+
+        border-radius: 4px;
+        
+        background-color: var(--color--grey-4);
+
+        &:hover{
+            background-color: var(--color--grey-1);
+            
+            p {
+                color: var(--color--grey-0);
+            }
+        }
+    }
 `

@@ -23,16 +23,16 @@ function UserProvider({ children }) {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
-                })
+                });
                 setUser(data);
                 navigate(currentPath);
             } catch (error) {
-                console.error(error)
+                console.error(error);
+                localStorage.clear();
             } finally {
-                setIsLoading(false)
+                setIsLoading(false);
             }
         }
-
         if (token && id) {
             loadUser();
         }

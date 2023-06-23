@@ -6,6 +6,9 @@ export const GlobalReset = createGlobalStyle`
         padding: 0;
         box-sizing: border-box;
         font-family: "Inter", sans-serif;
+    }
+
+    body {
         background-color: var(--color--grey-4);
     }
 

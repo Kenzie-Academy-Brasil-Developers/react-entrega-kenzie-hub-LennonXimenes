@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import { api } from "../services/api";
 import ProtectedRoutes from "../components/ProtectedRoutes";
 import PublicRoutes from "../components/PublicRoutes";
+import StackProvider from "../providers/StacksContext";
 
 function RoutesMain() {
     const [user, setUser] = useState(null);
@@ -32,8 +33,12 @@ function RoutesMain() {
             </Route>
 
             <Route element={<ProtectedRoutes />}>
-                <Route path="/dashboardpage" element={<DashboardPage />} />
                 <Route path="/loadingpage" element={<LoadingPage />} />
+                <Route path="/dashboardpage" element={
+                    <StackProvider>
+                        <DashboardPage />
+                    </StackProvider>
+                } />
             </Route>
         </Routes>
     )

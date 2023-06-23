@@ -1,7 +1,11 @@
 export function StacksCard() {
     return (
-        <div>
-            
-        </div>
+        <li>
+            <div>
+                <img src={} alt={} />
+                <FontTitle>{}</FontTitle>
+            </div>
+            <button onClick={() => removeProductFromList()}></button>
+        </li>
     )
 }
