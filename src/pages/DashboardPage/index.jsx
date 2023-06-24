@@ -27,7 +27,7 @@ function DashboardPage() {
     return (
         <>
             {isOpen ? <Modal setIsOpen={setIsOpen}></Modal> : null}
-            {isOpenTwo ? <ModalTwo currentTech={currentTech}  setIsOpenTwo={setIsOpenTwo}></ModalTwo> : null}
+            {isOpenTwo ? <ModalTwo setCurrentTech={setCurrentTech} currentTech={currentTech}  setIsOpenTwo={setIsOpenTwo}></ModalTwo> : null}
             <Header />
             <StyledSection>
                 <StyledContainer>
@@ -47,14 +47,12 @@ function DashboardPage() {
                     <StyledBox>
                         <ul>
                             {stack.length > 0 ? (
-                                stack.map(tech => {
-                                    return (
-                                        <li onClick={() => openModal(tech)} key={tech?.id}>
+                                stack.map((tech, index) => 
+                                        <li onClick={() => openModal(tech)} key={index}>
                                             <FontParagraph font="big" weight="big" color="white">{tech?.title}</FontParagraph>
                                             <FontParagraph>{tech?.status}</FontParagraph>
                                         </li>
-                                    )
-                                })
+                                )
                             ) : (
                                 <FontParagraph font="big" weight="big" color="white">Você ainda não possui tecnologias cadastradas</FontParagraph>
                             )

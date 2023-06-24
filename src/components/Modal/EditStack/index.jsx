@@ -1,4 +1,3 @@
-import { useForm } from "react-hook-form";
 import { StyledBtn, StyledForm, StyledModal, StyledTitleButton } from "../style";
 import { FontLabel, FontTitle } from "../../../styles/typograph";
 import X from "../../../assets/X.png"
@@ -6,12 +5,13 @@ import { useRef } from "react";
 import { useEffect } from "react";
 import { useContext } from "react";
 import { StackContext } from "../../../providers/StacksContext";
+import { useState } from "react";
 
-function ModalTwo({ children, setIsOpenTwo, currentTech }) {
-    const { register } = useForm();
+function ModalTwo({ children, setIsOpenTwo, currentTech, setCurrentTech }) {
 
-    const { stack } = useContext(StackContext);
-    const { deleteStack } = useContext(StackContext);
+    const { stack, createStack, deleteStack, editStack } = useContext(StackContext);
+
+    const [statusSelected, setStatusSelected] = useState(undefined);
 
     const modalRefTwo = useRef(null);
 
@@ -47,7 +47,17 @@ function ModalTwo({ children, setIsOpenTwo, currentTech }) {
         setIsOpenTwo(false);
         deleteStack(currentTech?.id);
     }
+
+    function handleChange(e) {
+        setStatusSelected(e.target.value);
+    }
     
+    function editCloseModal() {
+        setIsOpenTwo(false);
+        
+        editStack(statusSelected, currentTech.id);
+    }
+
     return (
         <StyledModal role="dialog">
             <div ref={modalRefTwo} className="container">
@@ -61,13 +71,16 @@ function ModalTwo({ children, setIsOpenTwo, currentTech }) {
                     <FontLabel font="big">Nome</FontLabel>
                     <input placeholder={currentTech.title} className="disabled" disabled />
                     <FontLabel font="big">Selecionar Status</FontLabel>
-                    <select {...register("status")}>
+
+                    <select value={statusSelected} onChange={handleChange}>
+                        <option value="">Escolha seu nível</option>
                         <option value="Iniciante">Iniciante</option>
                         <option value="Intermediário">Intermediário</option>
                         <option value="Avançado">Avançado</option>
                     </select>
+
                     <StyledBtn>
-                        <button className="save">Salvar alterações</button>
+                        <button type="button" onClick={() => editCloseModal()} className="save">Salvar alterações</button>
                         <button type="button" onClick={() => closeModal(currentTech)} className="dlt">Excluir</button>
                     </StyledBtn>
                 </StyledForm>
