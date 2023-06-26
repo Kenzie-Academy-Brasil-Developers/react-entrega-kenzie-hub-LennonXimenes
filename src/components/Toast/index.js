@@ -1,7 +1,7 @@
 import { toast, ToastContainer } from "react-toastify";
 
 export const toastSuccess = () => {
-    toast.success('Conta criada com sucesso!', {
+    toast.success("Conta criada com sucesso!", {
         position: "top-right",
         autoClose: 2000,
         hideProgressBar: false,
@@ -14,7 +14,7 @@ export const toastSuccess = () => {
 }
 
 export const toastSuccessLogin = () => {
-    toast.success('Login realizado com sucesso!', {
+    toast.success("Login realizado com sucesso!", {
         position: "top-right",
         autoClose: 2000,
         hideProgressBar: false,
@@ -27,7 +27,7 @@ export const toastSuccessLogin = () => {
 }
 
 export const toastError = () => {
-    toast.error('Ops! Algo deu errado', {
+    toast.error("Ops! Algo deu errado", {
         position: "top-right",
         autoClose: 2000,
         hideProgressBar: false,
@@ -40,7 +40,7 @@ export const toastError = () => {
 }
 
 export const toastErrorLogin = () => {
-    toast.error('Ops! E-mail ou senha inválidos', {
+    toast.error("Ops! E-mail ou senha inválidos", {
         position: "top-right",
         autoClose: 2000,
         hideProgressBar: false,
@@ -53,7 +53,7 @@ export const toastErrorLogin = () => {
 }
 
 export const toastSuccessEdit = () => {
-    toast.success('Nível alterado com sucesso!', {
+    toast.success("Nível alterado com sucesso!", {
         position: "top-right",
         autoClose: 2000,
         hideProgressBar: false,
@@ -66,7 +66,7 @@ export const toastSuccessEdit = () => {
 }
 
 export const toastErrorEdit = () => {
-    toast.error('Ops! Você precisa selecionar o seu nível', {
+    toast.error("Ops! Você precisa selecionar o seu nível", {
         position: "top-right",
         autoClose: 2000,
         hideProgressBar: false,

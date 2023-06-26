@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
@@ -26,14 +26,15 @@ function RoutesMain() {
     }, [])
 
     return (
+
         <Routes>
             <Route element={<PublicRoutes />}>
                 <Route path="/" element={<LoginPage />} />
                 <Route path="/registerpage" element={<RegisterPage />} />
+                <Route path="/loadingpage" element={<LoadingPage />} />
             </Route>
 
             <Route element={<ProtectedRoutes />}>
-                <Route path="/loadingpage" element={<LoadingPage />} />
                 <Route path="/dashboardpage" element={
                     <StackProvider>
                         <DashboardPage />
@@ -41,6 +42,7 @@ function RoutesMain() {
                 } />
             </Route>
         </Routes>
+
     )
 
 }
